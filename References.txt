@@ -1,0 +1,3 @@
+Unit Testing ASP.NET MVC Controllers: http://www.hanselman.com/blog/ABackToBasicsCaseStudyImplementingHTTPFileUploadWithASPNETMVCIncludingTestsAndMocks.aspx
+Image Resizer: http://www.hanselman.com/blog/NuGetPackageOfWeek11ImageResizerEnablesCleanClearImageResizingInASPNET.aspx
+imagefit http://www.ollicle.com/projects/jquery/imagefit/eg/
