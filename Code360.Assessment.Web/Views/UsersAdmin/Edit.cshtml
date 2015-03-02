@@ -7,7 +7,8 @@
 <h2>Edit.</h2>
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Edit", "UsersAdmin", FormMethod.Post, new { role = "form",enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -15,15 +16,18 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(m=>m.Picture)
+      
+
         <div class="form-group">
             @Html.LabelFor(model => model.Picture, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="imgDev">
-                    <img src="@Model.PictureStr" />
+                    <img id="previewHolder" src="@Model.PictureStr" />
                     
                 </div>
-                <span>
-                    <input type="file" style="padding-top:0.5em;padding-bottom:0.5em" name="Image" id="myFile" accept="image/*" />
+                <span class="btn btn-default btn-file">
+                    Browse <input type="file" class="myFileUploader" style="padding-top:0.5em;padding-bottom:0.5em" name="Image" id="myFile" accept="image/*" />
                 </span>
             </div>
            
@@ -40,16 +44,20 @@
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name)
+                
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
+            
             <span class=" col-md-10">
+             
                 @foreach (var item in Model.RolesList)
                 {
                     <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
                     @Html.Label(item.Value, new { @class = "control-label" })
+                    
                 }
             </span>
         </div>

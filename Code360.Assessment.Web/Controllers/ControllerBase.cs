@@ -104,6 +104,8 @@ namespace Code360.Assessment.Web.Controllers
 
         internal bool UploadSizeLimitReached(UserBase user)
         {
+            if (user.Image == null)
+                return false;
             bool state = false;
             if (user.Image.ContentLength > ValidationHelper.UPLOAD_FILE_SIZE_LIMIT)
             {

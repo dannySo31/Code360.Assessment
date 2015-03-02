@@ -6,7 +6,7 @@
 {
     height:300px;
     width:300px;
-  
+   margin-bottom:0.5em;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {

@@ -38,8 +38,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Image, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            <span>
-                <input type="file" style="padding-top:0.5em;padding-bottom:0.5em" name="Image" id="myFile" accept="image/*" />
+            <div class="imgDev">
+                <img id="previewHolder" src="~/Content/images/no-photo.jpg">
+
+            </div>
+            <span class="btn btn-default btn-file">
+                Browse<input type="file" class="myFileUploader" style="padding-top:0.5em;padding-bottom:0.5em" name="Image" id="myFile" accept="image/*" />
             </span>
             
            

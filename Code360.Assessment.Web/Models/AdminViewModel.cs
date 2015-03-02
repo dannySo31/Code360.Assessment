@@ -17,13 +17,13 @@ namespace IdentitySample.Models
         public string Name { get; set; }
     }
 
-    public class EditUserViewModel:UserBase
+    public class EditUserViewModel : UserBase
     {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-        public string Id { get; set; }
+
+       
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
+       
+       
     }
 }

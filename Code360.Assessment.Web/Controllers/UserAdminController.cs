@@ -124,8 +124,7 @@ namespace IdentitySample.Controllers
            
 
             var userRoles = await UserRepository.GetRolesAsync(user.Id,UserManager);
-
-            return View(new EditUserViewModel()
+            var viewModel=new EditUserViewModel
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -133,13 +132,16 @@ namespace IdentitySample.Controllers
                 Picture= user.Picture,
                 
                 RolesList = UserRepository.GetRoles(userRoles,RoleManager)
-            });
+            };
+            //recreate role
+
+            return View(viewModel);
         }
 
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Name,Picture,Image")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -174,14 +176,15 @@ namespace IdentitySample.Controllers
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Something failed.");
-            return View();
+           
+            return await Edit(editUser.Id);
         }
 
         private static void PopulateUser(EditUserViewModel editUser, ApplicationUser user)
         {
             var picture = new byte[0];
             //check if file is greater than the max save size;
-            if (editUser.Image.InputStream != null)
+            if (editUser.Image != null)
             {
                 picture = ImageHelper.ConvertUploadedFile(editUser.Image.InputStream, ValidationHelper.UPLOAD_SAVED_FILE_SIZE_LIMIT);
             }

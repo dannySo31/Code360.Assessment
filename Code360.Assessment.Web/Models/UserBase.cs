@@ -14,18 +14,23 @@ namespace Code360.Assessment.Web.Models
         [Display(Name = "Image")]
         [NotMapped]
         public HttpPostedFileBase Image { get; set; }
+
         [Required]
         [Display(Name = "Name")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Name { get; set; }
-        [Required]
+       
         [Display(Name = "Photo")]
+        
         public byte[] Picture { get; set; }
         public bool HasPicture
         {
             get
             {
-                return (Picture.Count() != 0);
+                if (Picture == null)
+                    return false;
+                else
+                    return (Picture.Count() != 0);
             }
 
         }
@@ -33,6 +38,9 @@ namespace Code360.Assessment.Web.Models
         {
             get
             {
+               
+                if (Picture == null)
+                    return string.Empty;
                 return "data:image/jpg;base64," + Convert.ToBase64String(Picture);
             }
 

@@ -48,8 +48,28 @@
     @Scripts.Render("~/Scripts/imagefit.js")
     @RenderSection("scripts", required: false)
     <script>
+       
+        $(function () {
+            $.validator.addMethod('accept', function () { return true; });
+            $('.myFileUploader').change(function () {
+              
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#previewHolder').attr('src', e.target.result);
+                        $('.imgDev').imagefit({
+                            mode: 'inside',
+                            force: 'true',
+                            halign: 'center',
+                            valign: 'middle'
+                        });
+                    }
 
-    $(function () {
+                    reader.readAsDataURL(this.files[0]);
+
+                }
+
+            });
         $('.imgDev').imagefit({
             mode: 'inside',
             force: 'true',

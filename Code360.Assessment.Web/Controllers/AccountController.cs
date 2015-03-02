@@ -145,7 +145,7 @@ namespace IdentitySample.Controllers
 
                 var picture = new byte[0];
                 //check if file is greater than the max save size;
-                if (model.Image.InputStream != null) { 
+                if (model.Image != null) { 
                      picture = ImageHelper.ConvertUploadedFile(model.Image.InputStream, ValidationHelper.UPLOAD_SAVED_FILE_SIZE_LIMIT);
                 }
                
