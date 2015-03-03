@@ -23,6 +23,7 @@ namespace Code360.Assessment.Web.Models
         [Display(Name = "Photo")]
         
         public byte[] Picture { get; set; }
+        [NotMapped]
         public bool HasPicture
         {
             get
@@ -34,6 +35,7 @@ namespace Code360.Assessment.Web.Models
             }
 
         }
+        [NotMapped]
         public string PictureStr
         {
             get
